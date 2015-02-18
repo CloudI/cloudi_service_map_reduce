@@ -135,9 +135,11 @@ cloudi_service_init(Args, Prefix, Timeout, Dispatcher) ->
     true = is_list(MapReduceArguments),
     case application:load(MapReduceModule) of
         ok ->
-            ok = reltool_util:application_start(MapReduceModule);
+            ok = reltool_util:application_start(MapReduceModule,
+                                                         [], Timeout);
         {error, {already_loaded, MapReduceModule}} ->
-            ok = reltool_util:application_start(MapReduceModule);
+            ok = reltool_util:application_start(MapReduceModule,
+                                                         [], Timeout);
         {error, _} ->
             ok = reltool_util:module_loaded(MapReduceModule)
     end,
