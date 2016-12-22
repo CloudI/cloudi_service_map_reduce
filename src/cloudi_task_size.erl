@@ -58,6 +58,8 @@
 
 -include_lib("cloudi_core/include/cloudi_logger.hrl").
 
+-type dict_proxy(Key, Value) :: dict:dict(Key, Value).
+
 -record(node,
     {
         task_size :: number()
@@ -74,7 +76,7 @@
         target_time_max :: float(), % in hours
         target_time_incr = 0 :: integer(),
         target_time_decr = 0 :: integer(),
-        lookup = dict:new()
+        lookup = dict:new() :: dict_proxy(node(), #node{})
     }).
 
 -type state() :: #cloudi_task_size{}.
