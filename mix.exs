@@ -6,7 +6,7 @@ defmodule CloudIServiceMapReduce do
 
   def project do
     [app: :cloudi_service_map_reduce,
-     version: "1.7.4",
+     version: "1.7.5",
      language: :erlang,
      erlc_options: [
        :debug_info,
@@ -29,7 +29,7 @@ defmodule CloudIServiceMapReduce do
   end
 
   defp deps do
-    [{:cloudi_core, "~> 1.7.4"}]
+    [{:cloudi_core, "~> 1.7.5"}]
   end
 
   defp description do
