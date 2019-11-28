@@ -14,9 +14,9 @@
    <h3><a name="CloudI_(Abstract)_Map-Reduce_Service">CloudI (Abstract) Map-Reduce Service</a></h3>
    This module provides an Erlang behaviour for fault-tolerant,
    database agnostic map-reduce.
-<p>Copyright © 2012-2018 Michael Truog</p>
+<p>Copyright © 2012-2019 Michael Truog</p>
 
-<p><b>Version:</b> 1.7.4 Sep 15 2018 21:12:10
+<p><b>Version:</b> 1.8.0 Nov 28 2019 15:35:31
   ------------------------------------------------------------------------</p>
 <p><b>Behaviours:</b> <a href="deps/cloudi_core/doc/cloudi_service.html"><tt>cloudi_service</tt></a>.</p>
 <p><b>This module defines the <tt>cloudi_service_map_reduce</tt> behaviour.</b><br> Required callback functions: <tt>cloudi_service_map_reduce_new/5</tt>, <tt>cloudi_service_map_reduce_send/2</tt>, <tt>cloudi_service_map_reduce_resend/2</tt>, <tt>cloudi_service_map_reduce_recv/7</tt>, <tt>cloudi_service_map_reduce_info/3</tt>.</p>
@@ -29,7 +29,7 @@
 <h2><a name="types">Data Types</a></h2>
 
 <h3 class="typedecl"><a name="type-map_send_args">map_send_args()</a></h3>
-<p><tt>map_send_args() = list()</tt></p>
+<p><tt>map_send_args() = nonempty_list()</tt></p>
 
 
 <h2><a name="index">Function Index</a></h2>
@@ -48,7 +48,7 @@
 
 <h3 class="function"><a name="cloudi_service_handle_request-11">cloudi_service_handle_request/11</a></h3>
 <div class="spec">
-<p><tt>cloudi_service_handle_request(Type, Name, Pattern, RequestInfo, Request, Timeout, Priority, TransId, Pid, State, Dispatcher) -&gt; any()</tt></p>
+<p><tt>cloudi_service_handle_request(RequestType, Name, Pattern, RequestInfo, Request, Timeout, Priority, TransId, Pid, State, Dispatcher) -&gt; any()</tt></p>
 </div>
 
 <h3 class="function"><a name="cloudi_service_init-4">cloudi_service_init/4</a></h3>
