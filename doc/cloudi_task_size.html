@@ -12,9 +12,9 @@
 <h1>Module cloudi_task_size</h1>
 <ul class="index"><li><a href="#description">Description</a></li><li><a href="#types">Data Types</a></li><li><a href="#index">Function Index</a></li><li><a href="#functions">Function Details</a></li></ul>
    <h3><a name="CloudI_Task_Size_Calculation">CloudI Task Size Calculation</a></h3>.
-<p>Copyright © 2009-2017 Michael Truog</p>
+<p>Copyright © 2009-2021 Michael Truog</p>
 
-<p><b>Version:</b> 1.7.1 Nov 26 2020 18:57:34
+<p><b>Version:</b> 2.0.2 May 27 2021 01:01:02
   ------------------------------------------------------------------------</p>
 <p><b>Authors:</b> Michael Truog (<a href="mailto:mjtruog at protonmail dot com"><tt>mjtruog at protonmail dot com</tt></a>).</p>
 
@@ -44,6 +44,7 @@
 <h3 class="function"><a name="get-2">get/2</a></h3>
 <div class="spec">
 <p><tt>get(Pid::pid(), State::<a href="#type-state">state()</a>) -&gt; {TaskSize::integer(), Timeout::<a href="deps/cloudi_core/doc/cloudi_service.html#type-timeout_value_milliseconds">cloudi_service:timeout_value_milliseconds()</a>}</tt><br></p>
+<p> </p>
 </div><p>
   <h4><a name="Get_the_task_size_information.">Get the task size information.</a></h4>
 </p>
@@ -51,6 +52,7 @@
 <h3 class="function"><a name="new-7">new/7</a></h3>
 <div class="spec">
 <p><tt>new(TaskCount::pos_integer(), TaskSizeInitial::integer(), TaskSizeMin::integer(), TaskSizeMax::integer(), TargetTimeInitial::float(), TargetTimeMin::float(), TargetTimeMax::float()) -&gt; <a href="#type-state">state()</a></tt><br></p>
+<p> </p>
 </div><p>
   <h4><a name="Get_a_new_task_size_lookup.">Get a new task size lookup.</a></h4>
 </p>
@@ -58,6 +60,7 @@
 <h3 class="function"><a name="put-4">put/4</a></h3>
 <div class="spec">
 <p><tt>put(Pid::pid(), TaskSize::integer(), ElapsedTime::float(), State::<a href="#type-state">state()</a>) -&gt; <a href="#type-state">state()</a></tt><br></p>
+<p> </p>
 </div><p>
   <h4><a name="Store_task_size_information.">Store task size information.</a></h4>
   ElapsedTime is in hours.</p>
@@ -65,6 +68,7 @@
 <h3 class="function"><a name="reduce-3">reduce/3</a></h3>
 <div class="spec">
 <p><tt>reduce(Pid::pid(), Multiplier::float(), State::<a href="#type-state">state()</a>) -&gt; <a href="#type-state">state()</a></tt><br></p>
+<p> </p>
 </div><p>
   <h4><a name="Reduce_the_task_size_after_a_timeout.">Reduce the task size after a timeout.</a></h4>
 </p>
