@@ -16,7 +16,7 @@
    database agnostic map-reduce.
 <p>Copyright © 2012-2021 Michael Truog</p>
 
-<p><b>Version:</b> 2.0.2 May 27 2021 01:01:02
+<p><b>Version:</b> 2.0.3 Dec 3 2021 23:02:34
   ------------------------------------------------------------------------</p>
 <p><b>Behaviours:</b> <a href="deps/cloudi_core/doc/cloudi_service.html"><tt>cloudi_service</tt></a>.</p>
 <p><b>This module defines the <tt>cloudi_service_map_reduce</tt> behaviour.</b><br> Required callback functions: <tt>cloudi_service_map_reduce_new/5</tt>, <tt>cloudi_service_map_reduce_send/2</tt>, <tt>cloudi_service_map_reduce_resend/2</tt>, <tt>cloudi_service_map_reduce_recv/7</tt>, <tt>cloudi_service_map_reduce_info/3</tt>.</p>
@@ -28,37 +28,22 @@
    database agnostic map-reduce.  See the hexpi test for example usage.
 <h2><a name="types">Data Types</a></h2>
 
-<h3 class="typedecl"><a name="type-agent">agent()</a></h3>
-<p><tt>agent() = <a href="deps/cloudi_core/doc/cloudi.html#type-agent">cloudi:agent()</a></tt></p>
-
-
 <h3 class="typedecl"><a name="type-map_send_args">map_send_args()</a></h3>
 <p><tt>map_send_args() = nonempty_list()</tt></p>
 
 
-<h3 class="typedecl"><a name="type-module_response">module_response()</a></h3>
-<p><tt>module_response(Result) = {{ok, Result}, AgentNew::<a href="#type-agent">agent()</a>} | {{error, <a href="deps/cloudi_core/doc/cloudi.html#type-error_reason">cloudi:error_reason()</a>}, AgentNew::<a href="#type-agent">agent()</a>}</tt></p>
-
-
-<h3 class="typedecl"><a name="type-service_name">service_name()</a></h3>
-<p><tt>service_name() = <a href="deps/cloudi_core/doc/cloudi.html#type-service_name">cloudi:service_name()</a></tt></p>
-
-
-<h3 class="typedecl"><a name="type-timeout_milliseconds">timeout_milliseconds()</a></h3>
-<p><tt>timeout_milliseconds() = <a href="deps/cloudi_core/doc/cloudi.html#type-timeout_milliseconds">cloudi:timeout_milliseconds()</a></tt></p>
-
-
 <h2><a name="index">Function Index</a></h2>
-<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#aspect_resume-1">aspect_resume/1</a></td><td></td></tr>
-<tr><td valign="top"><a href="#aspect_suspend-1">aspect_suspend/1</a></td><td></td></tr>
+<table width="100%" border="1" cellspacing="0" cellpadding="2" summary="function index"><tr><td valign="top"><a href="#aspect_resume-1">aspect_resume/1</a></td><td>
+  <h4><a name="Function_for_aspects_resume_service_configuration_option.">Function for aspects_resume service configuration option.</a></h4>
+  Add as {cloudi_service_map_reduce, aspect_resume}.</td></tr>
+<tr><td valign="top"><a href="#aspect_suspend-1">aspect_suspend/1</a></td><td>
+  <h4><a name="Function_for_aspects_suspend_service_configuration_option.">Function for aspects_suspend service configuration option.</a></h4>
+  Add as {cloudi_service_map_reduce, aspect_suspend}.</td></tr>
 <tr><td valign="top"><a href="#cloudi_service_handle_info-3">cloudi_service_handle_info/3</a></td><td></td></tr>
-<tr><td valign="top"><a href="#cloudi_service_handle_request-11">cloudi_service_handle_request/11</a></td><td></td></tr>
 <tr><td valign="top"><a href="#cloudi_service_init-4">cloudi_service_init/4</a></td><td></td></tr>
 <tr><td valign="top"><a href="#cloudi_service_terminate-3">cloudi_service_terminate/3</a></td><td></td></tr>
-<tr><td valign="top"><a href="#resume-2">resume/2</a></td><td></td></tr>
-<tr><td valign="top"><a href="#resume-3">resume/3</a></td><td></td></tr>
-<tr><td valign="top"><a href="#suspend-2">suspend/2</a></td><td></td></tr>
-<tr><td valign="top"><a href="#suspend-3">suspend/3</a></td><td></td></tr>
+<tr><td valign="top"><a href="#elapsed_seconds-0">elapsed_seconds/0</a></td><td>
+  <h4><a name="Get_the_current_elapsed_seconds_in_a_Map-Reduce_callback_function.">Get the current elapsed seconds in a Map-Reduce callback function.</a></h4>.</td></tr>
 </table>
 
 <h2><a name="functions">Function Details</a></h2>
@@ -67,23 +52,21 @@
 <div class="spec">
 <p><tt>aspect_resume(State::#state{service = pid(), map_reduce_module = module(), map_reduce_state = any(), map_reduce_name = string(), map_count = pos_integer(), log_execution_time = boolean(), retry = non_neg_integer(), retry_delay = non_neg_integer(), timeout_max = <a href="deps/cloudi_core/doc/cloudi_service.html#type-timeout_value_milliseconds">cloudi_service:timeout_value_milliseconds()</a>, map_requests = #{<a href="deps/cloudi_core/doc/cloudi_service.html#type-trans_id">cloudi_service:trans_id()</a> := #map_send{send_args = <a href="#type-map_send_args">map_send_args()</a>, retry_count = non_neg_integer()}}, time_running = <a href="deps/cloudi_core/doc/cloudi_timestamp.html#type-seconds_monotonic">cloudi_timestamp:seconds_monotonic()</a>, suspended = boolean(), elapsed_seconds = non_neg_integer()}) -&gt; {ok, #state{service = pid(), map_reduce_module = module(), map_reduce_state = any(), map_reduce_name = string(), map_count = pos_integer(), log_execution_time = boolean(), retry = non_neg_integer(), retry_delay = non_neg_integer(), timeout_max = <a href="deps/cloudi_core/doc/cloudi_service.html#type-timeout_value_milliseconds">cloudi_service:timeout_value_milliseconds()</a>, map_requests = #{<a href="deps/cloudi_core/doc/cloudi_service.html#type-trans_id">cloudi_service:trans_id()</a> := #map_send{send_args = <a href="#type-map_send_args">map_send_args()</a>, retry_count = non_neg_integer()}}, time_running = <a href="deps/cloudi_core/doc/cloudi_timestamp.html#type-seconds_monotonic">cloudi_timestamp:seconds_monotonic()</a>, suspended = boolean(), elapsed_seconds = non_neg_integer()}}</tt><br></p>
 <p> </p>
-</div>
+</div><p>
+  <h4><a name="Function_for_aspects_resume_service_configuration_option.">Function for aspects_resume service configuration option.</a></h4>
+  Add as {cloudi_service_map_reduce, aspect_resume}.</p>
 
 <h3 class="function"><a name="aspect_suspend-1">aspect_suspend/1</a></h3>
 <div class="spec">
 <p><tt>aspect_suspend(State::#state{service = pid(), map_reduce_module = module(), map_reduce_state = any(), map_reduce_name = string(), map_count = pos_integer(), log_execution_time = boolean(), retry = non_neg_integer(), retry_delay = non_neg_integer(), timeout_max = <a href="deps/cloudi_core/doc/cloudi_service.html#type-timeout_value_milliseconds">cloudi_service:timeout_value_milliseconds()</a>, map_requests = #{<a href="deps/cloudi_core/doc/cloudi_service.html#type-trans_id">cloudi_service:trans_id()</a> := #map_send{send_args = <a href="#type-map_send_args">map_send_args()</a>, retry_count = non_neg_integer()}}, time_running = <a href="deps/cloudi_core/doc/cloudi_timestamp.html#type-seconds_monotonic">cloudi_timestamp:seconds_monotonic()</a>, suspended = boolean(), elapsed_seconds = non_neg_integer()}) -&gt; {ok, #state{service = pid(), map_reduce_module = module(), map_reduce_state = any(), map_reduce_name = string(), map_count = pos_integer(), log_execution_time = boolean(), retry = non_neg_integer(), retry_delay = non_neg_integer(), timeout_max = <a href="deps/cloudi_core/doc/cloudi_service.html#type-timeout_value_milliseconds">cloudi_service:timeout_value_milliseconds()</a>, map_requests = #{<a href="deps/cloudi_core/doc/cloudi_service.html#type-trans_id">cloudi_service:trans_id()</a> := #map_send{send_args = <a href="#type-map_send_args">map_send_args()</a>, retry_count = non_neg_integer()}}, time_running = <a href="deps/cloudi_core/doc/cloudi_timestamp.html#type-seconds_monotonic">cloudi_timestamp:seconds_monotonic()</a>, suspended = boolean(), elapsed_seconds = non_neg_integer()}}</tt><br></p>
 <p> </p>
-</div>
+</div><p>
+  <h4><a name="Function_for_aspects_suspend_service_configuration_option.">Function for aspects_suspend service configuration option.</a></h4>
+  Add as {cloudi_service_map_reduce, aspect_suspend}.</p>
 
 <h3 class="function"><a name="cloudi_service_handle_info-3">cloudi_service_handle_info/3</a></h3>
 <div class="spec">
 <p><tt>cloudi_service_handle_info(Init_begin, Init_state, Dispatcher) -&gt; any()</tt></p>
-<p> </p>
-</div>
-
-<h3 class="function"><a name="cloudi_service_handle_request-11">cloudi_service_handle_request/11</a></h3>
-<div class="spec">
-<p><tt>cloudi_service_handle_request(RequestType, Name, Pattern, RequestInfo, Request, Timeout, Priority, TransId, Pid, State, Dispatcher) -&gt; any()</tt></p>
 <p> </p>
 </div>
 
@@ -99,29 +82,13 @@
 <p> </p>
 </div>
 
-<h3 class="function"><a name="resume-2">resume/2</a></h3>
+<h3 class="function"><a name="elapsed_seconds-0">elapsed_seconds/0</a></h3>
 <div class="spec">
-<p><tt>resume(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, any()})</tt><br></p>
+<p><tt>elapsed_seconds() -&gt; <a href="deps/cloudi_core/doc/cloudi_service_api.html#type-seconds">cloudi_service_api:seconds()</a></tt><br></p>
 <p> </p>
-</div>
-
-<h3 class="function"><a name="resume-3">resume/3</a></h3>
-<div class="spec">
-<p><tt>resume(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, Timeout::<a href="#type-timeout_milliseconds">timeout_milliseconds()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, any()})</tt><br></p>
-<p> </p>
-</div>
-
-<h3 class="function"><a name="suspend-2">suspend/2</a></h3>
-<div class="spec">
-<p><tt>suspend(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, any()})</tt><br></p>
-<p> </p>
-</div>
-
-<h3 class="function"><a name="suspend-3">suspend/3</a></h3>
-<div class="spec">
-<p><tt>suspend(Agent::<a href="#type-agent">agent()</a>, Prefix::<a href="#type-service_name">service_name()</a>, Timeout::<a href="#type-timeout_milliseconds">timeout_milliseconds()</a>) -&gt; <a href="#type-module_response">module_response</a>(ok | {error, any()})</tt><br></p>
-<p> </p>
-</div>
+</div><p>
+  <h4><a name="Get_the_current_elapsed_seconds_in_a_Map-Reduce_callback_function.">Get the current elapsed seconds in a Map-Reduce callback function.</a></h4>
+</p>
 <hr>
 
 <div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
