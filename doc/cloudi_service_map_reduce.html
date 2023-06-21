@@ -14,9 +14,9 @@
    <h3><a name="CloudI_(Abstract)_Map-Reduce_Service">CloudI (Abstract) Map-Reduce Service</a></h3>
    This module provides an Erlang behaviour for fault-tolerant,
    database agnostic map-reduce.
-<p>Copyright © 2012-2022 Michael Truog</p>
+<p>Copyright © 2012-2023 Michael Truog</p>
 
-<p><b>Version:</b> 2.0.5 Oct 11 2022 23:23:02
+<p><b>Version:</b> 2.0.6 Jun 20 2023 20:57:29
   ------------------------------------------------------------------------</p>
 <p><b>Behaviours:</b> <a href="deps/cloudi_core/doc/cloudi_service.html"><tt>cloudi_service</tt></a>.</p>
 <p><b>This module defines the <tt>cloudi_service_map_reduce</tt> behaviour.</b><br> Required callback functions: <tt>cloudi_service_map_reduce_new/5</tt>, <tt>cloudi_service_map_reduce_send/2</tt>, <tt>cloudi_service_map_reduce_resend/2</tt>, <tt>cloudi_service_map_reduce_recv/7</tt>, <tt>cloudi_service_map_reduce_info/3</tt>.</p>
@@ -44,6 +44,10 @@
 <tr><td valign="top"><a href="#cloudi_service_terminate-3">cloudi_service_terminate/3</a></td><td></td></tr>
 <tr><td valign="top"><a href="#elapsed_seconds-0">elapsed_seconds/0</a></td><td>
   <h4><a name="Get_the_current_elapsed_seconds_in_a_Map-Reduce_callback_function.">Get the current elapsed seconds in a Map-Reduce callback function.</a></h4>.</td></tr>
+<tr><td valign="top"><a href="#map_size-0">map_size/0</a></td><td>
+  <h4><a name="Get_the_current_number_of_map_service_requests_pending_in_a_Map-Reduce_callback_function.">Get the current number of map service requests pending in a Map-Reduce callback function.</a></h4>
+  The maximum integer value returned is the integer equivalent of the
+  concurrency argument.</td></tr>
 </table>
 
 <h2><a name="functions">Function Details</a></h2>
@@ -89,6 +93,15 @@
 </div><p>
   <h4><a name="Get_the_current_elapsed_seconds_in_a_Map-Reduce_callback_function.">Get the current elapsed seconds in a Map-Reduce callback function.</a></h4>
 </p>
+
+<h3 class="function"><a name="map_size-0">map_size/0</a></h3>
+<div class="spec">
+<p><tt>map_size() -&gt; non_neg_integer()</tt><br></p>
+<p> </p>
+</div><p>
+  <h4><a name="Get_the_current_number_of_map_service_requests_pending_in_a_Map-Reduce_callback_function.">Get the current number of map service requests pending in a Map-Reduce callback function.</a></h4>
+  The maximum integer value returned is the integer equivalent of the
+  concurrency argument.</p>
 <hr>
 
 <div class="navbar"><a name="#navbar_bottom"></a><table width="100%" border="0" cellspacing="0" cellpadding="2" summary="navigation bar"><tr><td><a href="overview-summary.html" target="overviewFrame">Overview</a></td><td><a href="http://www.erlang.org/"><img src="erlang.png" align="right" border="0" alt="erlang logo"></a></td></tr></table></div>
